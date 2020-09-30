@@ -1,0 +1,32 @@
+version: '3.7'
+services:
+  database:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - db-volume:/var/lib/mysql
+    ports:
+      - '3306:3306'
+    networks:
+      - internal
+  phpmyadmin:
+    depends_on:
+      - database
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    environment:
+      PMA_HOST: database
+      MYSQL_ROOT_PASSWORD: admin
+    networks:
+      - internal
+networks:
+  internal:
+volumes:
+  db-volume: {}

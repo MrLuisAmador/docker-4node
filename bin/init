@@ -1,0 +1,24 @@
+#!/bin/bash
+
+if [ ! -f .env ]; then
+   cp env.sample .env
+   echo "Copying env.sample to .env"
+else
+   echo "File already exist!"
+fi
+
+docker-compose up -d
+
+if [ ! -d client ]; then
+   npx create-react-app client --use-npm
+   echo "Creating client setup"
+else
+   echo "Client setup already exist!"
+fi
+
+if [ ! -d server ]; then
+   npx @adonisjs/cli new server
+   echo "Creating server setup"
+else
+   echo "Server setup already exist!"
+fi
