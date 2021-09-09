@@ -18,7 +18,7 @@ fi
 
 if [ ! -d server ]; then
    echo "Creating server setup"
-   npx @adonisjs/cli new server
+   npx express-generator server
 else
    echo "Server setup already exist!"
 fi
