@@ -10,15 +10,15 @@ fi
 docker-compose up -d
 
 if [ ! -d client ]; then
-   npx create-react-app client --use-npm
    echo "Creating client setup"
+   npx create-react-app client --use-npm
 else
    echo "Client setup already exist!"
 fi
 
 if [ ! -d server ]; then
-   npx @adonisjs/cli new server
    echo "Creating server setup"
+   npx @adonisjs/cli new server
 else
    echo "Server setup already exist!"
 fi
